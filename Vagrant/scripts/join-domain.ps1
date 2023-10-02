@@ -70,14 +70,14 @@ Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Done Disabling Windows Updates and Wi
 
 # Uninstall Windows Defender from WEF
 # This command isn't supported on WIN10
-If ($hostname -ne "win10" -And (Get-Service -Name WinDefend -ErrorAction SilentlyContinue).status -eq 'Running') {
-  # Uninstalling Windows Defender (https://github.com/StefanScherer/packer-windows/issues/201)
-  Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Uninstalling Windows Defender..."
-  Try {
-    Uninstall-WindowsFeature Windows-Defender -ErrorAction Stop
-    Uninstall-WindowsFeature Windows-Defender-Features -ErrorAction Stop
-  } Catch {
-    Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Windows Defender did not uninstall successfully..."
-    Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) We'll try again during install-red-team.ps1"
-  }
-}
+# If ($hostname -ne "win10" -And (Get-Service -Name WinDefend -ErrorAction SilentlyContinue).status -eq 'Running') {
+#   # Uninstalling Windows Defender (https://github.com/StefanScherer/packer-windows/issues/201)
+#   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Uninstalling Windows Defender..."
+#   Try {
+#     Uninstall-WindowsFeature Windows-Defender -ErrorAction Stop
+#     Uninstall-WindowsFeature Windows-Defender-Features -ErrorAction Stop
+#   } Catch {
+#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Windows Defender did not uninstall successfully..."
+#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) We'll try again during install-red-team.ps1"
+#   }
+# }

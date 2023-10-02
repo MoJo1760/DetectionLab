@@ -28,13 +28,6 @@
   args:
     creates: c:\vagrant\Vagrantfile
 
-- name: Making Windows10 Great Again
-  win_shell:  .\\MakeWindows10GreatAgain.ps1
-  args:
-    chdir: 'c:\vagrant\scripts'
-  register: win10_great
-  changed_when: "' was already installed. Moving On.' not in win10_great.stdout"
-
 - name: Join the Domain
   win_shell: .\\provision.ps1
   args:

@@ -1,3 +1,7 @@
+# Detection Lab - Malware Testing Edition
+## Purpose
+This is a fork of ![clong/DetectionLab](https://github.com/clong/DetectionLab) and modified to assist Red Teamers in the creation and testing of exploit code against target environments. We maintain the detection tooling, but drop all of the superfulous red team simulation pieces. We also enable Windows Defender and updates.
+
 # Detection Lab
 ## As of 2023-01-01, DetectionLab is no longer being actively maintained
 ![DetectionLab](./img/DetectionLab.png)

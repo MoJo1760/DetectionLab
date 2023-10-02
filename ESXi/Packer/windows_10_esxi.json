@@ -81,8 +81,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "../../Packer/scripts/set-powerplan.ps1",
-        "../../Packer/scripts/docker/disable-windows-defender.ps1"
+        "../../Packer/scripts/set-powerplan.ps1"
+        // "../../Packer/scripts/docker/disable-windows-defender.ps1"
       ]
     },
     {

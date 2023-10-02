@@ -8,14 +8,14 @@ if ($env:PACKER_BUILDER_TYPE -And $($env:PACKER_BUILDER_TYPE).startsWith("hyperv
   (New-Object System.Net.WebClient).DownloadFile($url, "$env:TEMP\debloat.zip")
   Expand-Archive -Path $env:TEMP\debloat.zip -DestinationPath $env:TEMP -Force
 
-  # Disable Windows Defender
-  Write-host Disable Windows Defender
-  $os = (gwmi win32_operatingsystem).caption
-  if ($os -like "*Windows 10*") {
-    set-MpPreference -DisableRealtimeMonitoring $true
-  } else {
-    Uninstall-WindowsFeature Windows-Defender-Features
-  }
+  # # Disable Windows Defender
+  # Write-host Disable Windows Defender
+  # $os = (gwmi win32_operatingsystem).caption
+  # if ($os -like "*Windows 10*") {
+  #   set-MpPreference -DisableRealtimeMonitoring $true
+  # } else {
+  #   Uninstall-WindowsFeature Windows-Defender-Features
+  # }
 
   # Optimize Windows Update
   Write-host Optimize Windows Update

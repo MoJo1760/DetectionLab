@@ -77,15 +77,15 @@ if ((gwmi win32_computersystem).partofdomain -eq $false) {
   Restart-Service DNS
 }
 
-# Uninstall Windows Defender
-If ((Get-Service -Name WinDefend -ErrorAction SilentlyContinue).status -eq 'Running') {
-  Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Uninstalling Windows Defender..."
-  Try {
-    Uninstall-WindowsFeature Windows-Defender -ErrorAction Stop
-    Uninstall-WindowsFeature Windows-Defender-Features -ErrorAction Stop
-  }
-  Catch {
-    Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Windows Defender did not uninstall successfully..."
-    Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) We'll try again during install-red-team.ps1"
-  }
-}
+# # Uninstall Windows Defender
+# If ((Get-Service -Name WinDefend -ErrorAction SilentlyContinue).status -eq 'Running') {
+#   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Uninstalling Windows Defender..."
+#   Try {
+#     Uninstall-WindowsFeature Windows-Defender -ErrorAction Stop
+#     Uninstall-WindowsFeature Windows-Defender-Features -ErrorAction Stop
+#   }
+#   Catch {
+#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Windows Defender did not uninstall successfully..."
+#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) We'll try again during install-red-team.ps1"
+#   }
+# }
