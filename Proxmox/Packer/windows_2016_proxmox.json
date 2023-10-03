@@ -76,12 +76,6 @@
         ]
       },
       {
-        "type": "powershell",
-        "scripts": [
-          "../../Packer/scripts/debloat-windows.ps1"
-        ]
-      },
-      {
         "type": "windows-restart"
       },
       {

@@ -53,9 +53,7 @@ if ((gwmi win32_computersystem).partofdomain -eq $false) {
     # Don't do this in Azure. If the network adatper description contains "Hyper-V", this won't apply changes.
     $adapters | ForEach-Object {if (!($_.Description).Contains("Hyper-V")) {$_.SetDNSServerSearchOrder($newDNSServers)}}
   }
-  Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Setting timezone to UTC"
-  c:\windows\system32\tzutil.exe /s "UTC"
-
+  Restart-Service DNS
   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Excluding NAT interface from DNS"
   $nics=Get-WmiObject "Win32_NetworkAdapterConfiguration where IPEnabled='TRUE'" |? { $_.IPAddress[0] -ilike "172.25.*" }
   $dnslistenip=$nics.IPAddress
@@ -76,16 +74,3 @@ if ((gwmi win32_computersystem).partofdomain -eq $false) {
   }
   Restart-Service DNS
 }
-
-# # Uninstall Windows Defender
-# If ((Get-Service -Name WinDefend -ErrorAction SilentlyContinue).status -eq 'Running') {
-#   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Uninstalling Windows Defender..."
-#   Try {
-#     Uninstall-WindowsFeature Windows-Defender -ErrorAction Stop
-#     Uninstall-WindowsFeature Windows-Defender-Features -ErrorAction Stop
-#   }
-#   Catch {
-#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Windows Defender did not uninstall successfully..."
-#     Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) We'll try again during install-red-team.ps1"
-#   }
-# }

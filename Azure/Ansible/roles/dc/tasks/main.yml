@@ -123,22 +123,6 @@
 - debug: msg="{{ audit_policy.stdout_lines }}"
   when: audit_policy.stdout_lines is defined
 
-# - name: Disable Windows Defender GPO
-#   win_shell: .\\configure-disable-windows-defender-gpo.ps1
-#   args:
-#     chdir: 'c:\vagrant\scripts'
-#   register: disable_win_def
-#   vars:
-#     ansible_become: yes
-#     ansible_become_method: runas
-#     ansible_become_user: windomain.local\vagrant
-#     ansible_become_password: vagrant
-#     ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-#   failed_when: "'Exception' in disable_win_def.stderr"
-#   changed_when: "' already linked at ' not in disable_win_def.stdout"
-
-- debug: msg="{{ disable_win_def.stdout_lines }}"
-
 - name: Configure RDP Permissions GPO
   win_shell: .\\configure-rdp-user-gpo.ps1
   args:

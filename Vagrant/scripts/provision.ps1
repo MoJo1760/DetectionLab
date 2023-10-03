@@ -1,25 +1,25 @@
-# Purpose: Sets timezone to UTC, sets hostname, creates/joins domain.
+# Purpose: sets hostname, creates/joins domain.
 # Source: https://github.com/StefanScherer/adfs2
 
 $ProfilePath = "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1"
 $box = Get-ItemProperty -Path HKLM:SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName -Name "ComputerName"
 $box = $box.ComputerName.ToString().ToLower()
 
-# Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Setting timezone to UTC..."
-# c:\windows\system32\tzutil.exe /s "UTC"
 
 Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Checking if Windows evaluation is expiring soon or expired..."
 . c:\vagrant\scripts\fix-windows-expiration.ps1
 
-If (!(Test-Path 'C:\Windows\Microsoft.NET\Framework\v4.0.30319')){
+Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Checking if .Net 4.8 install files are downloaded (and presumably installed)..."
+If (!(Test-Path 'C:\Users\vagrant\AppData\Local\Temp\ndp48-x86-x64-allos-enu.exe')){
   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Downloading .Net 4.8..."
     $dotnet4_8_DownloadUrl = "https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe"
     $dotnet4_8_Installer = "C:\Users\vagrant\AppData\Local\Temp\ndp48-x86-x64-allos-enu.exe"
     Invoke-WebRequest -Uri "$dotnet4_8_DownloadUrl" -OutFile $dotnet4_8_Installer
   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Installing .Net 4.8..."
     Start-Process $dotnet4_8_Installer -ArgumentList "/q /norestart"
+} else {
+  Write-Host -fore green "$('[{0:HH:mm}]' -f (Get-Date)) .Net 4.8 (probably) installed!"
 }
-
 
 If (!(Test-Path $ProfilePath)) {
   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Disabling the Invoke-WebRequest download progress bar globally for speed improvements." 

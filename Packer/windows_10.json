@@ -154,8 +154,7 @@
     {
       "type": "powershell",
       "scripts": [
-        "./scripts/vm-guest-tools.ps1",
-        "./scripts/debloat-windows.ps1"
+        "./scripts/vm-guest-tools.ps1"
       ]
     },
     {
@@ -165,7 +164,6 @@
       "type": "powershell",
       "scripts": [
         "./scripts/set-powerplan.ps1"
-        // "./scripts/docker/disable-windows-defender.ps1"
       ]
     },
     {

@@ -70,19 +70,12 @@
       ]
     },
     {
-      "type": "powershell",
-      "scripts": [
-        "../../Packer/scripts/debloat-windows.ps1"
-      ]
-    },
-    {
       "type": "windows-restart"
     },
     {
       "type": "powershell",
       "scripts": [
         "../../Packer/scripts/set-powerplan.ps1"
-        // "../../Packer/scripts/docker/disable-windows-defender.ps1"
       ]
     },
     {
